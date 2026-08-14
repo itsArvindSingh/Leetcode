@@ -1,28 +1,19 @@
 class Solution {
 public:
     bool check(vector<int>& nums) {
-        int n = nums.size();
+    int n = nums.size();
+    if(n<=1) return true;
 
-    vector<int> checkSorted(n);
-    for(int i = 0; i < n ; i++){
-        int j = 0;
-        for(int l = i; l < n ; l++){
-            checkSorted[l] = nums[j++];
-        }
-        for(int l = 0; l < i ; l++){
-            checkSorted[l] = nums[j++];
-        }
-        bool isSorted = true;
-        for(int k = 0; k < n - 1 ; k++){
-            if ( checkSorted[k] > checkSorted[k+1] ){
-                isSorted = false;
-                break;
-            }
-        }
-        if(isSorted){
-            return true;
+    int inversionCount = 0;
+
+    for(int i = 1; i < n ; i++){
+        if (nums[i-1] > nums[i]){
+            inversionCount++;
+            if(inversionCount>1) return false;
         }
     }
-    return false;
+    if( nums[0] < nums[n-1]) inversionCount++;
+
+    return inversionCount <= 1;
     }
 };
