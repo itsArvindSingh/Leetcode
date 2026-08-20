@@ -2,19 +2,19 @@ class Solution {
 public:
     vector<int> resultArray(vector<int>& nums) {
         int n = nums.size();
-        if ( n<=2 ) return nums;
-        vector<int> arr(n);
-        int idx = 0, revIdx = n - 1;
-        arr[0] = nums[0];
-        arr[n-1] = nums[1];
-        for(int i = 2; i < n ; i++){
-            if( arr[idx] > arr[revIdx] ){
-                arr[++idx] = nums[i];
-            }else {
-                arr[--revIdx] = nums[i];
-            }
+    if (n<=2) return nums;
+    vector<int> arr1;
+    vector<int> arr2;
+    arr1.push_back(nums[0]);
+    arr2.push_back(nums[1]);
+    for(int i = 2; i < n ; i++){
+        if ( arr1.back() > arr2.back()){
+            arr1.push_back(nums[i]);
+        }else {
+            arr2.push_back(nums[i]);
         }
-        reverse(arr.begin() + revIdx, arr.end());
-        return arr;
+    }
+    arr1.insert(arr1.end(), arr2.begin(), arr2.end());
+    return arr1;
     }
 };
