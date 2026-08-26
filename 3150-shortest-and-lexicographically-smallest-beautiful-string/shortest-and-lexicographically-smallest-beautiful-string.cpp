@@ -2,41 +2,50 @@ class Solution {
 public:
     string shortestBeautifulSubstring(string s, int k) {
        int n = s.length();
-        int len = INT_MAX;
+        int totalOnes = 0;
+
+        for (char c: s){
+            if ( c == '1') totalOnes++;
+        }
+
+        if ( totalOnes < k){
+            return "";
+        }
+
         int left = 0;
-        int one_in_s = 0;
-        int start = 0;
+        int ones = 0;
+
+        int bestLen = INT_MAX;
+        int bestStart = 0;
+
         for(int right = 0; right < n ; right++){
             if (s[right] == '1'){
-                one_in_s++;
+                ones++;
             }
-            while( one_in_s > k){
+            while( ones > k){
                 if(s[left] == '1'){
-                    one_in_s--;
+                    ones--;
                 }
                 left++;
             }
-            while( s[left] == '0' ){
+            while(left <= right && s[left] == '0' ){
                 left++;
             }
             
-            if ( one_in_s == k ){
+            if ( ones == k ){
                 int currentLen = right - left + 1;
-                if (currentLen < len )
-                {
-                    len = right - left + 1;
-                    start = left;
-                }
-                else if ( currentLen == len ){
-                    string current = s.substr(left, currentLen);
-                    string previous = s.substr(start, len);
 
-                    if ( current < previous ){
-                        start = left;
-                    }
+                if (currentLen < bestLen )
+                {
+                    bestLen = currentLen;
+                    bestStart = left;
+                }
+                else if ( currentLen == bestLen && s.compare(left, currentLen,
+                                    s, bestStart, bestLen) < 0 ){
+                    bestStart = left;
                 }
             }
         }
-        return len == INT_MAX ? "": s.substr(start, len);
+        return s.substr(bestStart, bestLen);
     }
 };
