@@ -6,11 +6,9 @@ public:
         int i = 1;
         for(int j = 0; j < n ; j++){
             if ( nums[i-1] != nums[j] ){
-                cout << i << endl;
                 swap(nums[i++], nums[j]);
             }
         }
-        cout << endl;
         return i; 
     }
 };
