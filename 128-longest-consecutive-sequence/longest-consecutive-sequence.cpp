@@ -4,18 +4,19 @@ public:
         if(nums.empty()){
             return 0;
         }
-        set<int> ans(nums.begin(), nums.end());
+        set<int> numSet(nums.begin(), nums.end());
         
-        int currCount = 0, maxCount = 0;
-        for( auto it = ans.begin(); it != prev(ans.end()); it++){
-            auto nextIt = next(it);
-            if( *it + 1  != *nextIt ){
-                currCount = 0;
-            }else if( *it + 1  == *nextIt ){
-                currCount++;
-                maxCount = max(maxCount, currCount);
+        int maxCount = 0;
+        for( int n : numSet){
+            if( numSet.find(n-1) == numSet.end() ){
+                int length = 1;
+                while( numSet.find(length + n) != numSet.end()){
+                    length++;
+                }
+                maxCount = max(maxCount, length);
             }
         }
-        return maxCount + 1;
+
+        return maxCount ;
     }
 };
