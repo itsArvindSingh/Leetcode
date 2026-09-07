@@ -5,18 +5,16 @@ public:
             return 0;
         }
         set<int> numSet(nums.begin(), nums.end());
-        
-        int maxCount = 0;
-        for( int n : numSet){
-            if( numSet.find(n-1) == numSet.end() ){
+        int count = 0;
+        for(int num: numSet){
+            if(numSet.find(num - 1) == numSet.end() ){
                 int length = 1;
-                while( numSet.find(length + n) != numSet.end()){
+                while( numSet.find(num + length) != numSet.end()){
                     length++;
                 }
-                maxCount = max(maxCount, length);
+                count = max(count, length);
             }
         }
-
-        return maxCount ;
+        return count;
     }
 };
