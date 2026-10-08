@@ -1,9 +1,9 @@
 class Solution {
 public:
     int longestConsecutive(vector<int>& nums) {
-        set<int> numset(nums.begin(), nums.end());
+        unordered_set<int> numset(nums.begin(), nums.end());
         int count = 0;
-        for(int num:numset){
+        for(int num: numset){
             if(numset.find(num-1) == numset.end()){
                 int length = 1;
                 while(numset.find(num + length) != numset.end()){
