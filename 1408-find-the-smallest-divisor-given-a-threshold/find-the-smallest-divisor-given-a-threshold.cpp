@@ -3,14 +3,13 @@ public:
     int smallestDivisor(vector<int>& nums, int threshold) {
         int n = nums.size();
         int divisor = INT_MAX;
-        sort(nums.begin(), nums.end());
         int left = 1;
-        int right = nums[n-1];
+        int right = *max_element(nums.begin(), nums.end());
         while(left<=right){
             int sum = 0 ;
             int mid = left + (right - left)/2;
-            for(int i = 0; i < n ; i++){
-                sum += ceil( double (nums[i])/ double (mid));
+            for(int num: nums){
+                sum += ceil( double (num)/ double (mid));
             }
             if(sum<=threshold){
                 if(divisor>mid){
