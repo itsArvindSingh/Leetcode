@@ -6,7 +6,7 @@ public:
             int sum = 0;
             int mid = left + (right - left)/2;
             for(int num: nums){
-                sum += ceil( double (num)/ double (mid));
+                sum +=  (num-1+mid)/ mid;
             }
             if(sum<=threshold){
                 right = mid;
