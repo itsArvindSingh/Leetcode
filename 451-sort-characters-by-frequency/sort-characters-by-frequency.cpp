@@ -1,22 +1,27 @@
-class Solution{
-public:
-	string frequencySort(string s){
-        int n = s.length();
-        unordered_map<char, int> freq;
-        for(char c : s){
-            freq[c]++;
-            }
 
-        vector<pair<char,int>> v(freq.begin(), freq.end());
-        sort(v.begin(), v.end() ,
-                [ ] (auto &a, auto &b){
-                return a.second > b.second;
-                }
-        );
-        string ans = "";
-        for(auto & [c, f]: v){
-            ans += string(f,c);
-            }
-        return ans;
+class Solution {
+public:
+    string frequencySort(string s) {
+        unordered_map<char,int> mp;
+        multimap<int,char> r;
+        string ss="";
+
+        for(auto a : s)
+            mp[a]++;
+
+        for(auto a : mp)
+            r.insert({a.second, a.first});
+
+        for(auto it = r.rbegin(); it != r.rend(); ++it)
+            ss += string(it->first, it->second);
+
+        //for(auto it = r.rbegin(); it != r.rend(); ++it){
+        //   for (int i = 0; i < it->first; ++i) {
+        //          ss += it->second;
+        //        }
+        //} 
+
+        return ss;
     }
 };
+
