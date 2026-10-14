@@ -2,12 +2,25 @@ class Solution {
 public:
    bool isAnagram(string s, string t)
    {
-
-     if(s.length() != t.length()) return false;
-    sort(s.begin(), s.end());
-    sort(t.begin(), t.end());
-    return t == s;
+    vector<int> f(26,0);
+    for(char c: s){
+        f[c- 'a']++;
+    }
+    for(char c: t){
+        f[c - 'a']--;
+    }
+    for(int i: f){
+        if(i!=0) return false;
+    }
+    return true;
    }
+//    {
+
+//     //  if(s.length() != t.length()) return false;
+//     // sort(s.begin(), s.end());
+//     // sort(t.begin(), t.end());
+//     // return t == s;
+//    }
     // if(s.length() != t.length()) return false;
     //    unordered_map<char, int> s1;
     //    unordered_map<char, int> s2;
