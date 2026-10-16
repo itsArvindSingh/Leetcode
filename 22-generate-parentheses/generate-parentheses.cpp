@@ -2,6 +2,7 @@ class Solution {
     void backtrack(vector<string> &res, string cur, int open, int close, int max){
         if(cur.length() == 2 * max){
             res.push_back(cur);
+            return;
         }
         if(open< max){
             backtrack(res, cur + "(", open + 1, close, max);
