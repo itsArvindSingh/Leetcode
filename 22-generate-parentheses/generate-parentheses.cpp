@@ -1,21 +1,36 @@
+#include <iostream>
+#include <vector>
+#include <string>
+
 class Solution {
-    vector<string> res;
-    void backtrack(string cur, int open, int close, int max){
-        if(cur.length() == 2 * max){
-            res.push_back(cur);
+public:
+    std::vector<std::string> generateParenthesis(int n) {
+        std::vector<std::string> result;
+        std::string current = "";
+        backtrack(result, current, 0, 0, n);
+        return result;
+    }
+
+private:
+    void backtrack(std::vector<std::string>& result, std::string& current, int openCount, int closeCount, int maxPairs) {
+        // Base case: If the current string reaches the maximum required length, add it to results
+        if (current.length() == maxPairs * 2) {
+            result.push_back(current);
             return;
         }
-        if(open< max){
-            backtrack(cur + "(", open + 1, close, max);
-        }
-        if(close < open){
-            backtrack(cur + ")", open, close + 1, max);
+
+        // Rule 1: We can always add an opening parenthesis if we haven't reached 'n' yet
+        if (openCount < maxPairs) {
+            current.push_back('(');
+            backtrack(result, current, openCount + 1, closeCount, maxPairs);
+            current.pop_back(); // Backtrack
         }
 
-    }
-public:
-    vector<string> generateParenthesis(int n) {
-        backtrack("", 0,0, n);
-        return res;
+        // Rule 2: We can only add a closing parenthesis if it matches an existing opening one
+        if (closeCount < openCount) {
+            current.push_back(')');
+            backtrack(result, current, openCount, closeCount + 1, maxPairs);
+            current.pop_back(); // Backtrack
+        }
     }
 };
