@@ -4,9 +4,8 @@ public:
         long long n = 0;
         while(x!=0){
             int digit = x % 10;
-            if( n  > INT_MAX/10) return 0;
-            if( n  < INT_MIN/10) return 0;
             n = n * 10 + digit;
+            if( n > INT_MAX || n < INT_MIN) return 0;
             x = x / 10;
         }
         return n;
