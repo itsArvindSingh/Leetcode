@@ -3,9 +3,11 @@ public:
     int missingNumber(vector<int>& nums) {
         int fxor = 0, nxor = 0;
         int n = nums.size();
-        for(int i = 0 ; i <= n; i++){
-            fxor ^= i;
-        }
+        if( n % 4 == 0 ) fxor = n;
+        else if( n % 4 == 1) fxor = 1;
+        else if( n % 4 == 2) fxor = n + 1;
+        else fxor = 0;
+        
         for(int num: nums){
             nxor ^= num;
         }
