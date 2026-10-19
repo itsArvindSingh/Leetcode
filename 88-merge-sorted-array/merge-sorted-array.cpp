@@ -11,9 +11,10 @@ public:
                 nums1[k--] = nums1[i--];
             }
         }
-        while( i >= 0){
-            nums1[k--] = nums1[i--];
-        }
+        // while( i >= 0){ // we don't need to do this as the element of the 
+        // nums1 are already in their correct order
+        //     nums1[k--] = nums1[i--];
+        // }
         while( j >= 0){
             nums1[k--] = nums2[j--];
         }
