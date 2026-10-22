@@ -1,14 +1,17 @@
 class Solution {
 public:
     vector<int> getRow(int rowIndex) {
+        vector<vector<int>> ans ;
         vector<int> prev;
-        for(int i = 0 ; i < rowIndex+1; i++){
-            vector<int> currows(i+1,1);
-            for(int j = 1; j < i ; j++){
-                currows[j] = prev[j-1]+prev[j];
+        int n = rowIndex;
+        for(int i = 0; i < n+1 ; i++){
+            vector<int> cur(i+1, 1);
+            for(int j = 1 ; j < i ; j++){
+                cur[j] = prev[j] + prev[j-1];
             }
-            prev = currows;
+            prev = cur;
+            ans.push_back(cur);
         }
-        return prev;
+        return ans.back();
     }
 };
