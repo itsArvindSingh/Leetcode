@@ -1,15 +1,14 @@
 class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
+        unordered_map<int,int> freq;
         int n = nums.size();
-        unordered_map<int,int> mapp;
-        for(int i = 0; i < n; i++){
-            int needed = target - nums[i];
-            if( mapp.find(needed) != mapp.end()){
-                return {mapp[needed], i};
+        for(int i = 0 ; i < n; i++){
+            if(freq.find(target - nums[i]) != freq.end()){
+                return {i, freq[target - nums[i]]};
             }
-            mapp[nums[i]] = i;
+            freq[nums[i]] = i;
         }
-        return {};
+        return {-1,-1};
     }
 };
