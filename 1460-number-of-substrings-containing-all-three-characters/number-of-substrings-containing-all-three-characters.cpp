@@ -4,18 +4,19 @@ class Solution {
     }
 public:
     int numberOfSubstrings(string s) {
-        int n = s.length();
+        int len = s.length();
         int ans = 0;
-        int left = 0;
+        int left = 0, right = 0;
         vector<int> freq(3,0);
-        for(int right = 0 ; right < n ; right++){
+        while(right < len){
             freq[s[right] - 'a']++;
 
             while(isValid(freq)){ // check it subatring is valid or not
-                ans += s.length() - right;
+                ans += len - right;
                 freq[s[left] - 'a']--;
                 left++;
             }
+            right++;
         }
         return ans;
     }
