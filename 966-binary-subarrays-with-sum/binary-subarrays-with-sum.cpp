@@ -1,23 +1,27 @@
 class Solution {
-    int atmost(vector<int>& nums, int goal){
-        int totalcount = 0, left = 0, right = 0;
-        int cursum = 0;
+public:
+    int numSubarraysWithSum(vector<int>& nums, int goal) {
+        int zeros = 0;
+        int left = 0, right = 0;
         int n = nums.size();
+        int total = 0;
+        int cursum = 0;
         while(right < n){
             cursum += nums[right];
-            while(left <= right && cursum > goal){
+            while(( left < right) && (nums[left] == 0 || cursum > goal)){
+                if(nums[left] == 0){
+                    zeros++;
+                }else{
+                    zeros = 0;
+                }
                 cursum -= nums[left];
                 left++;
             }
-            if(cursum <= goal){
-                totalcount += right - left + 1;
+            if(cursum == goal){
+                total += 1 + zeros;
             }
             right++;
         }
-        return totalcount;
-    }
-public:
-    int numSubarraysWithSum(vector<int>& nums, int goal) {
-        return atmost(nums, goal) - atmost(nums, goal-1);
+        return total;
     }
 };
