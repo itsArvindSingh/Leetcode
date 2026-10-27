@@ -6,8 +6,7 @@ public:
         sort(boxTypes.begin(), boxTypes.end(), [](vector<int>& a, vector<int> & b){
             return a[1] > b[1];
         });
-
-        for(auto b: boxTypes){
+        for(auto& b: boxTypes){
             int x = min(b[0], truckSize);
             ans += x * b[1];
             truckSize -= x;
