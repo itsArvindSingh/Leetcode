@@ -8,16 +8,14 @@ public:
         };
 
         int n = s.length();
-        int prev = s.back();
-        int sum = roman[prev];
+        int sum = 0;
 
-        for(int i = n - 2; i >= 0 ; i--){
+        for(int i = 0; i < n ; i++){
 
-            if(roman[s[i]] < roman[prev] ){
+            if(i <= n - 2 && roman[s[i]] < roman[s[i+1]] ){
                 sum -= roman[s[i]];
             }else {
                 sum += roman[s[i]];
-                prev = s[i];
             }
         }
         return sum;
