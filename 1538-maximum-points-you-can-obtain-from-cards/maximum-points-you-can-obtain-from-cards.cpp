@@ -6,13 +6,11 @@ public:
         for(int i = 0; i < k ; i++){
             sum += cardPoints[i];
         }
-        int right = n - 1;
         int ans = sum;
         for(int i = k - 1; i >= 0 ; i--){
             sum -= cardPoints[i];
-            sum += cardPoints[right];
+            sum += cardPoints[n-k+i];
             ans = max(ans, sum);
-            right--;
         }
         return ans;
     }
