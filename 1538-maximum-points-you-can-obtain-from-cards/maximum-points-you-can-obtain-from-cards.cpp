@@ -1,32 +1,19 @@
 class Solution {
 public:
     int maxScore(vector<int>& cardPoints, int k) {
-        int res = 0, n = cardPoints.size();
-        for(int i = 0 ; i < k ; i++){ // 1. get the sum of the first subarray
-            res += cardPoints[i];
+        int n = cardPoints.size();
+        int sum = 0;
+        for(int i = 0; i < k ; i++){
+            sum += cardPoints[i];
         }
-        int cur = res;
-        for(int i = k-1; i>=0; i--){
-            cur -= cardPoints[i];
-            cur += cardPoints[n-k+i];
-
-            res = max(cur, res);
+        int right = n - 1;
+        int ans = sum;
+        for(int i = k - 1; i >= 0 ; i--){
+            sum -= cardPoints[i];
+            sum += cardPoints[right];
+            ans = max(ans, sum);
+            right--;
         }
-        return res;
-
-
-        // int sum =0; // brute force approach
-        // int n = cardPoints.size();
-        // for(int p = 0; p<=k ; p++){
-        //     int cursum = 0;
-        //     for(int i = 0; i < k - p ; i++){
-        //         cursum += cardPoints[i];
-        //     }
-        //     for(int i = n-1; i>n-p-1 ; i--){
-        //         cursum += cardPoints[i];
-        //     }
-        //     sum = max(sum, cursum);
-        // }
-        // return sum;
+        return ans;
     }
 };
