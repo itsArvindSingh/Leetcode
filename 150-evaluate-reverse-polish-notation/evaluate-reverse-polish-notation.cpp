@@ -1,11 +1,11 @@
 class Solution {
-    long long solve(int x, int y, string op){
+    long long solve(long long & x, long long & y, string & op){
         if( op == "+") return x + y;
         else if ( op == "-") return x - y;
         else if ( op == "*") return x * y;
         else return x / y;
     }
-    bool isOperator(string ch){
+    bool isOperator(string &ch){
 
         if(
             ch == "+" ||
