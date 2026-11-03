@@ -6,14 +6,8 @@ class Solution {
         else return x / y;
     }
     bool isOperator(string &ch){
-
-        if(
-            ch == "+" ||
-            ch == "-" ||
-            ch == "/" ||
-            ch == "*"
-        )return true;
-        else return false;
+        if(ch == "+" || ch == "-" || ch == "/" || ch == "*" )return true;
+        return false;
     }
 public:
     int evalRPN(vector<string>& tokens) {
